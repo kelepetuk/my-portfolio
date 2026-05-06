@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Portfolio</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FUTURISTIC FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* =========================
+   GLOBAL STYLE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #eef1f5;
+    color: #333;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* DARK MODE (ADDED ONLY) */
+body.dark {
+    background: #0f172a;
+    color: #f1f5f9;
+}
+
+/* HEADINGS */
+h1, h2, h3 {
+    font-family: 'Orbitron', 'Poppins', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* NAVBAR */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(230,230,230,0.95);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+body.dark header {
+    background: rgba(15,23,42,0.95);
+}
+
+.logo-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown-img {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-container:hover .dropdown-img {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    transition: 0.3s ease;
+    font-weight: 500;
+    display: inline-block;
+}
+
+body.dark nav a {
+    color: #f1f5f9;
+}
+
+nav a:hover {
+    color: #0077b6;
+    transform: translateY(-3px);
+}
+
+/* SECTION */
+.section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 120px 20px 80px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s ease;
+}
+
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.hero h1 {
+    font-size: 42px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+body.dark .card {
+    background: #1e293b;
+    color: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* PROJECT */
+.project {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+body.dark .project {
+    background: #1e293b;
+    color: white;
+}
+
+/* BUTTON */
+button {
+    padding: 10px 20px;
+    background: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #005f87;
+    transform: translateY(-4px);
+}
+
+/* SOCIAL */
+.social-icons a {
+    margin: 0 12px;
+    font-size: 28px;
+    color: #0077b6;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+body.dark .modal-content {
+    background: #1e293b;
+    color: white;
+}
+
+/* =========================
+   🔥 RESTORED HOVER EFFECTS (FIX)
+========================= */
+
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 119, 182, 0.25),
+                0 0 12px rgba(0, 255, 255, 0.15);
+}
+
+.project:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 119, 182, 0.25),
+                0 0 12px rgba(0, 255, 255, 0.15);
+}
+
+nav a:hover {
+    transform: translateY(-3px);
+}
+
+button:hover {
+    transform: translateY(-4px) scale(1.05);
+}
+
+.card, .project {
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <b>MY PORTFOLIO</b>
+        <img class="dropdown-img" src="iamgee.png">
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+
+        <span onclick="toggleDark()" style="cursor:pointer; margin-left:10px;">🌙</span>
+    </nav>
+</header>
+
+<section id="home" class="section hero">
+    <h1>Hi, I'm an IT Developer</h1>
+    <p>Cybersecurity | Networking | Android Development</p>
+</section>
+
+<section id="about" class="section">
+<h2>About Me</h2>
+<br>
+<p>
+I am an aspiring IT professional willing to learn, give my best effort,
+and surpass my limits for my dream in the IT industry.
+</p>
+
+<br>
+<h3>Career Goal</h3>
+<p>Aspiring Cybersecurity Analyst / Network Engineer specializing in cybersecurity defense, threat detection, and real-time network monitoring.</p>
+
+<br>
+<button onclick="downloadCV()">Download CV</button>
+</section>
+
+<section class="section">
+<h2>Cybersecurity Lab Experience</h2>
+<br>
+<ul>
+    <li>Port scanning using Nmap (local lab)</li>
+    <li>Packet analysis using Wireshark</li>
+    <li>Burp Suite vulnerability testing</li>
+    <li>Kali Linux practice (VM labs)</li>
+</ul>
+</section>
+
+<section id="skills" class="section">
+<h2>Skills</h2>
+<br>
+
+<div class="grid">
+    <div class="card">Network Troubleshooting</div>
+    <div class="card">Wireshark</div>
+    <div class="card">Nmap</div>
+    <div class="card">Metasploit</div>
+    <div class="card">Burp Suite</div>
+    <div class="card">SIEM Tools</div>
+    <div class="card">Linux</div>
+    <div class="card">Python Basics</div>
+    <div class="card">Cisco Packet Tracer</div>
+    <div class="card">GNS3</div>
+</div>
+</section>
+
+<section id="projects" class="section">
+<h2>Projects</h2>
+
+<div class="project">
+<h3>Ambulance Booking App</h3>
+<p>Real-time Android emergency system with Firebase tracking.</p>
+<p><b>Proof:</b> Firebase Firestore + real-time tracking system</p>
+</div>
+
+<div class="project">
+<h3>Inventory System</h3>
+<p>Stock management with expiration monitoring.</p>
+<p><b>Proof:</b> Java + Firebase system with alerts and tracking</p>
+</div>
+</section>
+
+<section id="contact" class="section">
+<h2>Contact</h2>
+
+<p>Email: drelledoriaboragay@email.com</p>
+
+<p>
+Phone Number: +639519193605
+</p>
+
+<div class="social-icons">
+    <a href="https://www.facebook.com/darelleed" target="_blank">
+        <i class="fab fa-facebook"></i>
+    </a>
+
+    <a href="https://github.com/kelepetuk" target="_blank">
+        <i class="fab fa-github"></i>
+    </a>
+</div>
+
+<button onclick="hireMe()">Hire Me</button>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Project Info</h3>
+    <p>Real-world cybersecurity / development project.</p>
+    <button onclick="document.getElementById('modal').style.display='none'">Close</button>
+  </div>
+</div>
+
+<script>
+const sections = document.querySelectorAll(".section");
+
+window.addEventListener("scroll", () => {
+    sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top < window.innerHeight - 120) {
+            sec.classList.add("show");
+        }
+    });
+});
+
+function hireMe() {
+    alert("Joke lang, try lang 'to");
+}
+
+function toggleDark() {
+    document.body.classList.toggle("dark");
+}
+
+function downloadCV() {
+    alert("Attach your CV PDF file here");
+}
+</script>
+
+</body>
+</html>
