@@ -5,246 +5,241 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Professional Portfolio</title>
 
-<!-- GOOGLE FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- FUTURISTIC FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- FONT AWESOME -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* =========================
-   GLOBAL STYLE
-========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#eef1f5;
+color:#333;
+scroll-behavior:smooth;
+overflow-x:hidden;
 }
 
-body {
-    font-family: 'Poppins', Arial, sans-serif;
-    background: #eef1f5;
-    color: #333;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+body.dark{background:#0f172a;color:#f1f5f9}
+
+h1,h2,h3{
+font-family:'Orbitron',sans-serif;
+letter-spacing:1px;
 }
 
-/* DARK MODE (ADDED ONLY) */
-body.dark {
-    background: #0f172a;
-    color: #f1f5f9;
+/* NAV */
+header{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(230,230,230,0.95);
+backdrop-filter:blur(8px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+z-index:1000;
 }
 
-/* HEADINGS */
-h1, h2, h3 {
-    font-family: 'Orbitron', 'Poppins', sans-serif;
-    letter-spacing: 1px;
+body.dark header{background:rgba(15,23,42,0.95)}
+
+.logo-container{font-size:20px;cursor:pointer}
+
+nav a{
+margin:0 10px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+transition:.3s;
 }
 
-/* NAVBAR */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(230,230,230,0.95);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+body.dark nav a{color:#f1f5f9}
 
-body.dark header {
-    background: rgba(15,23,42,0.95);
-}
-
-.logo-container {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.dropdown-img {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    opacity: 0;
-    transform: translateY(-15px);
-    transition: 0.3s ease;
-    pointer-events: none;
-}
-
-.logo-container:hover .dropdown-img {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-    transition: 0.3s ease;
-    font-weight: 500;
-    display: inline-block;
-}
-
-body.dark nav a {
-    color: #f1f5f9;
-}
-
-nav a:hover {
-    color: #0077b6;
-    transform: translateY(-3px);
+nav a:hover{
+color:#0077b6;
+transform:translateY(-3px);
 }
 
 /* SECTION */
-.section {
-    max-width: 1000px;
-    margin: auto;
-    padding: 120px 20px 80px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 0.8s ease;
+.section{
+max-width:1000px;
+margin:auto;
+padding:120px 20px 80px;
+opacity:0;
+transform:translateY(30px);
+transition:.8s;
 }
 
-.section.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+.section.show{opacity:1;transform:translateY(0)}
 
 /* HERO */
-.hero {
-    text-align: center;
-    margin-top: 80px;
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+margin-top:80px;
 }
 
-.hero h1 {
-    font-size: 42px;
+.hero-content{flex:1}
+.hero-content h1{font-size:42px}
+
+.hero-img{
+flex:1;
+display:flex;
+justify-content:center;
+position:relative;
 }
 
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+.hero-img::before{
+content:"";
+position:absolute;
+width:280px;
+height:280px;
+background:linear-gradient(135deg,#00c6ff,#0077b6);
+border-radius:50%;
+filter:blur(45px);
+opacity:0.6;
+z-index:0;
+animation:pulse 3s infinite ease-in-out;
 }
 
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.15);}
+100%{transform:scale(1);}
 }
 
-body.dark .card {
-    background: #1e293b;
-    color: white;
+.hero-img img{
+width:260px;
+height:260px;
+object-fit:cover;
+border-radius:50%;
+z-index:1;
+position:relative;
+border:4px solid white;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-.card:hover {
-    transform: translateY(-5px);
+body.dark .hero-img img{
+border:4px solid #1e293b;
 }
 
-/* PROJECT */
-.project {
-    background: white;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
+/* BIG CARDS */
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.12);
+margin-top:15px;
+transition:.3s ease;
 }
 
-body.dark .project {
-    background: #1e293b;
-    color: white;
+body.dark .card{
+background:#1e293b;
+color:white;
+box-shadow:0 12px 30px rgba(0,0,0,0.6);
+}
+
+.section > .card:hover{
+transform:none;
+box-shadow:0 12px 35px rgba(0,119,182,0.25);
+}
+
+/* SKILLS */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:12px;
+}
+
+.grid .card{
+text-align:center;
+padding:15px;
+font-weight:500;
+cursor:pointer;
+transition:.3s ease;
+}
+
+.grid .card i{
+font-size:28px;
+color:#0077b6;
+margin-bottom:8px;
+display:block;
+}
+
+body.dark .grid .card i{color:#00c6ff}
+
+.grid .card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 12px 30px rgba(0,119,182,.25),
+0 0 12px rgba(0,255,255,.15);
+}
+
+/* PROJECTS */
+.project{
+background:#f9fafb;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+transition:.3s ease;
+cursor:pointer;
+}
+
+body.dark .project{background:#0f172a}
+
+.project:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 12px 30px rgba(0,119,182,.25),
+0 0 12px rgba(0,255,255,.15);
 }
 
 /* BUTTON */
-button {
-    padding: 10px 20px;
-    background: #0077b6;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s ease;
+button{
+padding:10px 20px;
+background:#0077b6;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+transition:.3s;
 }
 
-button:hover {
-    background: #005f87;
-    transform: translateY(-4px);
+button:hover{
+background:#005f87;
+transform:translateY(-4px) scale(1.05);
 }
 
 /* SOCIAL */
-.social-icons a {
-    margin: 0 12px;
-    font-size: 28px;
-    color: #0077b6;
-}
-
-/* MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-body.dark .modal-content {
-    background: #1e293b;
-    color: white;
+.social-icons a{
+margin:0 12px;
+font-size:28px;
+color:#0077b6;
 }
 
 /* =========================
-   🔥 RESTORED HOVER EFFECTS (FIX)
+   FOOTER
 ========================= */
-
-.card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 12px 30px rgba(0, 119, 182, 0.25),
-                0 0 12px rgba(0, 255, 255, 0.15);
+footer{
+text-align:center;
+padding:20px;
+margin-top:40px;
+font-size:14px;
+background:#ffffff;
+color:#333;
 }
 
-.project:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(0, 119, 182, 0.25),
-                0 0 12px rgba(0, 255, 255, 0.15);
+body.dark footer{
+background:#1e293b;
+color:#f1f5f9;
 }
 
-nav a:hover {
-    transform: translateY(-3px);
+/* RESPONSIVE */
+@media(max-width:768px){
+.hero{
+flex-direction:column;
+text-align:center;
 }
-
-button:hover {
-    transform: translateY(-4px) scale(1.05);
-}
-
-.card, .project {
-    cursor: pointer;
 }
 </style>
 </head>
@@ -252,139 +247,149 @@ button:hover {
 <body>
 
 <header>
-    <div class="logo-container">
-        <b>MY PORTFOLIO</b>
-        <img class="dropdown-img" src="iamgee.png">
-    </div>
+<div class="logo-container"><b>MY PORTFOLIO</b></div>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-
-        <span onclick="toggleDark()" style="cursor:pointer; margin-left:10px;">🌙</span>
-    </nav>
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+<span onclick="toggleDark()" style="cursor:pointer;">🌙</span>
+</nav>
 </header>
 
+<!-- HERO -->
 <section id="home" class="section hero">
-    <h1>Hi, I'm an IT Developer</h1>
-    <p>Cybersecurity | Networking | Android Development</p>
+
+<div class="hero-content">
+<h1>Hi, I'm Darelle Boragay</h1>
+<p>Cybersecurity | Networking | Android Development</p>
+</div>
+
+<div class="hero-img">
+<img src="image.png" alt="Profile Picture">
+</div>
+
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="section">
+<div class="card">
 <h2>About Me</h2>
 <br>
-<p>
-I am an aspiring IT professional willing to learn, give my best effort,
-and surpass my limits for my dream in the IT industry.
-</p>
+<p>I am an aspiring IT professional willing to learn, give my best effort,
+and surpass my limits for my dream in the IT industry.</p>
 
 <br>
 <h3>Career Goal</h3>
-<p>Aspiring Cybersecurity Analyst / Network Engineer specializing in cybersecurity defense, threat detection, and real-time network monitoring.</p>
+<p>Aspiring Cybersecurity Analyst / Network Engineer specializing in cybersecurity defense and monitoring.</p>
 
 <br>
 <button onclick="downloadCV()">Download CV</button>
+</div>
 </section>
 
+<!-- LAB -->
 <section class="section">
+<div class="card">
 <h2>Cybersecurity Lab Experience</h2>
 <br>
 <ul>
-    <li>Port scanning using Nmap (local lab)</li>
-    <li>Packet analysis using Wireshark</li>
-    <li>Burp Suite vulnerability testing</li>
-    <li>Kali Linux practice (VM labs)</li>
+<li>Port scanning using Nmap</li>
+<li>Wireshark packet analysis</li>
+<li>Burp Suite testing</li>
+<li>Kali Linux practice</li>
 </ul>
+</div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills" class="section">
+<div class="card">
 <h2>Skills</h2>
 <br>
 
 <div class="grid">
-    <div class="card">Network Troubleshooting</div>
-    <div class="card">Wireshark</div>
-    <div class="card">Nmap</div>
-    <div class="card">Metasploit</div>
-    <div class="card">Burp Suite</div>
-    <div class="card">SIEM Tools</div>
-    <div class="card">Linux</div>
-    <div class="card">Python Basics</div>
-    <div class="card">Cisco Packet Tracer</div>
-    <div class="card">GNS3</div>
+<div class="card"><i class="fas fa-network-wired"></i>Network Troubleshooting</div>
+<div class="card"><i class="fas fa-wifi"></i>Wireshark</div>
+<div class="card"><i class="fas fa-bug"></i>Nmap</div>
+<div class="card"><i class="fas fa-user-secret"></i>Metasploit</div>
+<div class="card"><i class="fas fa-shield-alt"></i>Burp Suite</div>
+<div class="card"><i class="fas fa-chart-line"></i>SIEM Tools</div>
+<div class="card"><i class="fab fa-linux"></i>Linux</div>
+<div class="card"><i class="fab fa-python"></i>Python Basics</div>
+<div class="card"><i class="fas fa-server"></i>Cisco Packet Tracer</div>
+<div class="card"><i class="fas fa-project-diagram"></i>GNS3</div>
+</div>
+
 </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects" class="section">
+<div class="card">
 <h2>Projects</h2>
+<br>
 
 <div class="project">
 <h3>Ambulance Booking App</h3>
 <p>Real-time Android emergency system with Firebase tracking.</p>
-<p><b>Proof:</b> Firebase Firestore + real-time tracking system</p>
 </div>
 
 <div class="project">
 <h3>Inventory System</h3>
-<p>Stock management with expiration monitoring.</p>
-<p><b>Proof:</b> Java + Firebase system with alerts and tracking</p>
+<p>Stock management with expiration monitoring using Firebase.</p>
+</div>
+
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="section">
+<div class="card">
 <h2>Contact</h2>
+<br>
 
 <p>Email: drelledoriaboragay@email.com</p>
-
-<p>
-Phone Number: +639519193605
-</p>
+<p>Phone: +639519193605</p>
 
 <div class="social-icons">
-    <a href="https://www.facebook.com/darelleed" target="_blank">
-        <i class="fab fa-facebook"></i>
-    </a>
-
-    <a href="https://github.com/kelepetuk" target="_blank">
-        <i class="fab fa-github"></i>
-    </a>
+<a href="https://www.facebook.com/darelleed"><i class="fab fa-facebook"></i></a>
+<a href="https://github.com/kelepetuk"><i class="fab fa-github"></i></a>
 </div>
 
+<br>
 <button onclick="hireMe()">Hire Me</button>
+</div>
 </section>
 
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3>Project Info</h3>
-    <p>Real-world cybersecurity / development project.</p>
-    <button onclick="document.getElementById('modal').style.display='none'">Close</button>
-  </div>
-</div>
+<!-- FOOTER -->
+<footer>
+© 2026 Darelle Boragay.
+</footer>
 
 <script>
-const sections = document.querySelectorAll(".section");
+const sections=document.querySelectorAll(".section");
 
-window.addEventListener("scroll", () => {
-    sections.forEach(sec => {
-        if (sec.getBoundingClientRect().top < window.innerHeight - 120) {
-            sec.classList.add("show");
-        }
-    });
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-120){
+sec.classList.add("show");
+}
+});
 });
 
-function hireMe() {
-    alert("Joke lang, try lang 'to");
+function toggleDark(){
+document.body.classList.toggle("dark");
 }
 
-function toggleDark() {
-    document.body.classList.toggle("dark");
+function hireMe(){
+alert("Joke lang 😄 try lang 'to");
 }
 
-function downloadCV() {
-    alert("Attach your CV PDF file here");
+function downloadCV(){
+alert("Attach your CV PDF file here");
 }
 </script>
 
